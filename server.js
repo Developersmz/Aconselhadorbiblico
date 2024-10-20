@@ -20,7 +20,7 @@ const sessionStore = new MySQLStore({
 
 app.use(session({
     key: 'sessionsaconselhadorbiblicokey',
-    secret: 'thisismysecretsessionkeyforaconselhadorbiblico2024',
+    secret: process.env.SECRET_SESSION || 'thisismysecretsessionkeyforaconselhadorbiblico2024',
     store: sessionStore,
     resave: false,
     saveUninitialized: false,

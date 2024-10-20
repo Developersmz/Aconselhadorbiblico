@@ -109,6 +109,8 @@ User.beforeCreate(async (user) => {
     user.password = hash
 })
 
+// db.sequelize.sync({ alter: true })
+
 module.exports = {
     User: User,
     Phrase: Phrase,
