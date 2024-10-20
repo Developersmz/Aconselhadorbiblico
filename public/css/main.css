@@ -732,6 +732,9 @@ Contact us
 	.estudo-section .estudo-item p{
 		font-size: 1.7rem;
 	}
+	.estudo-item #more-content{
+		font-size: 1.9rem;
+	}
 	.estudo-section .section-text p{
 		font-size: 1.6rem;
 		text-transform: initial;
