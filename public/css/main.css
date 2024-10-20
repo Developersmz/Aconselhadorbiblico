@@ -367,7 +367,7 @@ Home section
 	text-transform: lowercase;
 }
 .estudo-item #more-content{
-	font-size: 1.3rem;
+	font-size: 2rem;
 	color: var(--white);
 	margin-top: 10px;
 	display: none;
