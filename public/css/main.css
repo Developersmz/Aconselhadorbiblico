@@ -739,7 +739,7 @@ Contact us
 	.estudo-section .content h3{
 		font-size: 18px;
 	}
-	.estudo-section .content p{
+	.estudo-section .content .section-text p{
 		font-size: 1.9rem;
 	}
 	.estudo-section .btn{
