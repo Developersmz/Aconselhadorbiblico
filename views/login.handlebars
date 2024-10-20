@@ -1,0 +1,40 @@
+<!-- Css Links -->
+<link rel="stylesheet" href="/css/forms.css">
+
+<!-- Section -->
+<section class="sec-form">
+  <!-- Title -->
+  <div class="section-title">
+    <h1>Login</h1>
+    <a href="/auth/register">Confirme os seus dados | <span>Criar uma nova conta</span></a>
+  </div>
+
+  <!-- FORM -->
+  <div class="container">
+    {{#if error}}
+      <div class="alert alert-danger">
+        <p>{{error}}</p>
+      </div>
+    {{/if}}
+    <div class="row">
+      <div class="user">
+          <!-- Alert -->
+      <form action="/auth/login" method="post">
+          <div class="div">
+            <input type="email" name="email" placeholder="Email">
+          </div>
+          <div class="div">
+            <input type="password" name="password" placeholder="Palavra-passe">
+          </div>
+          <button type="submit">login</button>
+          <a href="/auth/register" class="btn">registar-se</a>
+      </form>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- Javascript -->
+<script src="/js/forms.js"></script>
+
+<!-- Section -->

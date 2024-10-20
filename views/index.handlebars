@@ -1,0 +1,366 @@
+
+<!-- Css Links --->
+<link rel="stylesheet" type="text/css" href="/css/main.css">
+<!-- Font Awesome Links --->
+<link rel="stylesheet" type="text/css" href="/css/fontawesome.css">
+
+<body>
+    <!-- Header Start -->
+    <header class="header">
+      <div class="logo">
+        <a href="/">AconselhadorBiblico</a>
+      </div>
+      <nav class="nav">
+        <a href="#home" class="nav-item">home</a>
+        <a href="/counsel/counseling" class="nav-item">conselhos</a>
+        <a href="#phrases" class="nav-item">frases</a>
+        <a href="#estudo" class="nav-item">estudo</a>
+        <a href="#galeria" class="nav-item">galeria</a>
+        <a href="#about" class="nav-item">about</a>
+        <a href="#contact" class="nav-item">contact</a>
+       </nav>
+
+        
+        <div class="icons">
+          <div class="fas fa-bars" id="menu-btn"></div>
+        </div>
+
+        <div class="settings">
+            <div class="fas fa-cog"></div>
+        </div>
+        <div class="settings-sec">
+            <div class="theme-btn">
+                <span></span>
+            </div>
+            <div class="settings-menu-inner">
+                {{#if user}}
+                    <div class="user">
+                        <span>{{user.username}}</span>
+                    </div>
+                    <div class="logout-option">
+                        <a href="/auth/logout"><button>logout</button></a>
+                    </div>
+                {{else}}
+                    <div class="user">
+                        <span>Sem usuário logado</span>
+                    </div>
+                    <div class="logout-option">
+                        <a href="/auth/login"><button>login</button></a>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+
+    </header>
+    <!-- Header End -->
+
+    <!-- Home section start -->
+    <section class="home-section" id="home">
+      <div class="home-bg"></div>
+        <div class="content">
+            <h3>Encontre aqui orientações biblícas</h3>
+            <p>As citações são da Bíblia nas versões <b>ACF</b> -
+                Almeida Corrigida Fiel, <b>ARC</b> - Almeida Revista
+                e Corrigida, <b>ARA</b> - Almeida Revista e
+                Atualizada, <b>KJA</b> - King James Atualizada.</p>
+                <a href="/counsel/counseling" class="btn btn-go-to-search">ajuda</a>
+            </div>
+
+</section>
+
+<!-- Home section end -->
+
+<!--- Phrases section start --->
+<section class="phrases-section" id="phrases">
+    <div class="container">
+    <div class="recipe">
+        <div class="section-title">
+            <h2>Frases diarias</h2>
+        </div>
+        <div class="section-text">
+            <p>Encontre aqui frases e certezas de conforto</p>
+        </div>
+    </div>
+    <div class="row">
+        {{#if db_phrases}}
+            {{#each db_phrases}}
+            <div class="phrases-item">
+                <div class="frase">
+                    <p><i>{{phrase}}</i></p>
+                </div>
+                <div class="base-biblica">
+                    <p>{{versicle}}</p>
+                </div>
+            </div>
+            {{/each}}
+            {{else}}
+                <div class="section-text">
+                    <p>Sem frases ainda</p>
+                </div>
+        {{/if}}
+    </div>
+    </div>
+</section>
+<!--- Phrases section end --->
+<!-- Estudo section start -->
+<section class="estudo-section" id="estudo">
+    <div class="container">
+        <div class="row">
+            <div class="section-title">
+                <h2>Estudo</h2>
+            </div>
+            <div class="section-text">
+                <p>Pequenas verdades relacionadas á biblia</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="content">
+                <h3>Topicos</h3>
+                {{#if db_doutrines}}
+                    {{#each db_doutrines}}
+                    <div class="estudo-item">
+                        <h4>{{title}}</h4>
+                        <p>Leia mais e aprenda sobre o/a {{title}}</p>
+                        <div id="more-content">{{text}}</div>
+                        <a class="btn btn-see" id="btn-more">ler mais</a>
+                    </div>
+                    {{/each}}
+                    {{else}}
+                        <div class="section-text" style="margin-bottom: 30px;">
+                            <p>Sem conteúdo ainda</p>
+                        </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Estudo section end -->
+
+<!-- Galeria section start -->
+<section class="galeria-section" id="galeria">
+    <div class="container">
+        <div class="row">
+            <div class="section-title">
+                <h2>galeria</h2>
+            </div>
+            <div class="section-text">
+                <p>Veja na nossa galeria, algumas imagens</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="images">
+            <div class="images-item">
+                <img src="img/gallery/gallery-16.jpg">
+            </div>
+            <div class="images-item">
+                <img src="img/gallery/gallery-2.jpg">
+            </div>
+            <div class="images-item">
+                <img src="img/gallery/gallery-3.jpg">
+            </div>
+            <div class="images-item">
+                <img src="img/gallery/gallery-4.jpg">
+            </div>
+            <div class="images-item">
+                <img src="img/gallery/gallery-5.jpg">
+            </div>
+            <div class="images-item">
+                <img src="img/gallery/gallery-6.jpg">
+            </div>
+            <div class="images-item">
+                <img src="img/gallery/gallery-7.jpg">
+            </div>
+            <div class="images-item">
+                <img src="img/gallery/gallery-13.jpg">
+            </div>
+            <div class="images-item">
+                <img src="img/gallery/gallery-17.jpeg">
+            </div>
+            <div class="images-item">
+                <img src="img/gallery/gallery-10.jpg">
+            </div>
+            <div class="images-item">
+                <img src="img/gallery/gallery-14.jpg">
+            </div>
+            <div class="images-item">
+                <img src="img/gallery/gallery-15.jpg">
+            </div>
+            <div class="images-item">
+                <img src="img/gallery/gallery-18.jpg">
+            </div>
+            <div class="images-item">
+                <img src="img/gallery/gallery-19.jpg">
+            </div>
+            <div class="images-item">
+                <img src="img/gallery/gallery-20.jpg">
+            </div>
+            </div>
+        <div class="more">
+            <button type="button" class="more-btn">mais</button>
+        </div>
+        </div>
+    </div>
+</section>
+<!-- Galeria section end -->
+
+<!-- About section start -->
+<section class="about-section" id="about">
+    <div class="container">
+    <div class="row">
+        <div class="section-title">
+            <h2>about us</h2>
+        </div>
+        <div class="section-text">
+            <h3>AconselhadorBiblico</h3>
+            <p>
+                Na nossa plataforma, o conteúdo que oferecemos está fundamentado nos 
+                ensinamentos e escritos de diversos autores respeitados na doutrina e 
+                ensino da Palavra de Deus. Nossa missão é fornecer ajuda e conselhos 
+                bíblicos confiáveis, apoiados por uma base sólida de entendimento das Escrituras. 
+                Entre os escritores cujas obras nos inspiram e guiam estão nomes como 
+                Bruce Anstey, C. Stanley, J. N. Darby, Norman Berry, C. H. Mackintosh, Andrew Miller e Mario Persona. 
+                Esses autores, reconhecidos por sua profunda compreensão da Bíblia, nos ajudam a transmitir uma 
+                mensagem clara e fundamentada, para que possamos oferecer orientações eficazes e 
+                espiritualmente enriquecedoras para aqueles que buscam apoio e direção em sua jornada cristã.
+                A plataforma não apenas busca fornecer respostas, mas também ser um recurso confiável 
+                para estudo e crescimento espiritual, sempre embasada na sabedoria das Escrituras.
+            </p>
+            <p>O Aconselhador Bíblico é um projeto idealizado e 
+                desenvolvido pela comunidade Mav. Tech, 
+                com o propósito de oferecer conteúdo bíblico 
+                para guiar e auxiliar na <i>"tomada de decisão"</i> em 
+                tempos difíceis. O projeto foi iniciado em 2022, apesar de não ter sido lançado imediatamente.
+            </p>
+            <h5>Organização do site</h5>
+            <p>
+                O site está dividido em várias seções, cada uma com um foco específico:
+                <h6>Seção principal</h6>
+                <p>Apresenta a introdução ao site.</p>
+                <h6>Seção dos conselhos</h6>
+                <p>Onde o usuário pode inserir uma palavra ou frase e receber conselhos ou versículos bíblicos relevantes para sua situação ou dúvida.</p>
+                <h6>Seção das frases</h6>
+                <p>Contém frases ou verdades acompanhadas de suas respectivas referências bíblicas.</p>
+                <h6>Seção do estudo</h6>
+                <p>Apresenta tópicos com uma breve introdução e desenvolvimento, incluindo um link para mais informações sobre o assunto.</p>
+                <h6>Seção da Galeria</h6>
+                <p>Exibe imagens relacionadas ao conteúdo do Aconselhador Bíblico.</p>
+                <h6>Seção do Contacto</h6>
+                <p>Fornece nossa "localização", informações de contato e links para serviços afiliados ou plataformas relacionadas.</p>
+
+            </p>
+        </div>
+        <div class="section-img">
+            <div class="box">
+                <img src="img/about-bg.jpg">
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- About section end -->
+
+<!-- Contact section -->
+<div class="contact-section">
+    <div class="container">
+    <h2>Contacte-nos</h2>
+        <form class="contact-form" id="contactForm">
+        <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" id="name"  name="name" placeholder="Seu nome" required />
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="Seu e-mail" required />
+        </div>
+        <div class="form-group">
+            <label for="message">Mensagem</label>
+            <textarea id="message" name="message" rows="5" placeholder="Sua mensagem" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Enviar Mensagem</button>
+        </form>
+    </div>
+</div>
+<!-- Contact section end -->
+
+<!-- Contact section start -->
+<footer class="footer" id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="footer-item">
+                <h3>Nossa localização</h3>
+                <p>Maputo – Matola <br> Bairro Patrice Lumumba</p>
+            </div>
+            <div class="footer-item">
+                <div class="links">
+                    <h3>Links</h3>
+                    <a href="https://mavton23.github.io/DevelopersMz.github.io" target="_blank"><p>developersmz</p></a>
+                    <a href="https://mavton23.github.io/DevelopersMz.github.io" target="_blank"><p>projetos associados</p></a>
+                    <a href="/counsel/counseling"><p>conselhos</p></a>
+                    <a href="#estudo "><p>estudos</p></a>
+                    {{#if user}}
+                        <a href="/auth/logout"><p>log out</p></a>
+                    {{else}}
+                        <a href="/auth/login"><p>login</p></a>
+                        <a href="/auth/register"><p>criar conta</p></a>
+                    {{/if}}
+                    {{#if user.isAdmin}}
+                        <a href="/aconselhadorbiblico/admin/dashboard"><p>Dashboard</p></a>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="footer-item">
+                <h3>Contate-nos</h3>
+                <p>+258 873  807 402</p>
+                <p>+258 850  115 183</p>
+                <p class="email-address">developersmz12@gmail.com</p>
+            
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=61556706071013" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/developersmz/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/developersmz" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://github.com/mavton23" target="_blank"><i class="fab fa-git"></i></a>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="copyright">
+                &copy; 2024 Aconselhadorbíblico | DevelopersMz
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Contact section end -->
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const formData = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      message: document.getElementById('message').value
+    };
+
+    try {
+      const response = await fetch('/send_message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        alert('E-mail enviado com sucesso!');
+      } else {
+        alert('Falha ao enviar o e-mail.');
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+      alert('Erro ao enviar o e-mail.');
+    }
+  });
+</script>
+
+<!-- Javascript Link --->
+<script type="text/javascript" src="js/interatividade.js"></script>
+</body>
+</html>

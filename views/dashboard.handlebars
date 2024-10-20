@@ -1,0 +1,111 @@
+<!-- Javascript -->
+<script src="/js/forms.js"></script>
+
+<!-- Css Links -->
+<link rel="stylesheet" href="/css/dashboard.css">
+
+<!-- Header -->
+<header class="header">
+  <div class="container">
+    <div class="row">
+      <div class="info">
+        <div class="admin">
+          {{#db_master}}
+            <span>{{username}}</span>
+          {{/db_master}}
+        </div>
+        <div class="logout">
+          <a href="/auth/logout"><button type="button">logout</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Header -->
+
+<!-- Section -->
+<section class="dashboard">
+  <div class="container">
+    <div class="row">
+      <div class="section-title">
+        <h3>dashboard</h3>
+      </div>
+      <div class="dash-actions">
+        <!-- Painel -->
+        <div class="painel">
+          <!-- Left -->
+          <div class="left">
+            <div class="container">
+              <div class="content">
+                <div class="actions">
+                  <div class="title">
+                    <h4>Actions</h4>
+                  </div>
+                  <a href="/aconselhadorbiblico/add">adicionar</a>
+                  <a href="/counsel/addcounseling">conselhos+</a>
+                  <a href="/aconselhadorbiblico/edit">editar</a>
+                  <a href="/aconselhadorbiblico/delete">excluir</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Middle -->
+          <div class="middle">
+            <div class="container">
+              <div class="content">
+                <div class="title">
+                  <h4>Overview</h4>
+                </div>
+                <!-- Users -->
+                <div class="users-view">
+                  <select id="users-items">
+                    <!--<h6>Users</h6>-->
+                    {{#each db_users}}
+                      <option>Nome: {{username}}, Email: {{email}}</option>
+                    {{/each}}
+                  </select>
+                  <div class="statistics-number user-number">
+                    <h6>Users |</h6>
+                    <span>{{count_users}}</span>
+                  </div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="statistics">
+                  <div class="statistics-number">
+                    <h6>Counsels |</h6>
+                    <span>{{count_counsels}}</span>
+                  </div>
+                  <div class="statistics-number">
+                    <h6>Phrases |</h6>
+                    <span>{{count_phrases}}</span>
+                  </div>
+                  <div class="statistics-number">
+                    <h6>Doutrines |</h6>
+                    <span>{{count_doutrines}}</span>
+                  </div>
+                </div>
+                <!-- Statistics -->
+              </div>
+            </div>
+          </div>
+          <!-- Right -->
+          <div class="right">
+            <div class="container">
+              <div class="content">
+                <div class="title">
+                  <h4>Links</h4>
+                </div>
+                <a href="/">Home</a>
+                <div class="copyright">
+                  <span>AconselhadorBiblico &copy; 2024 by DevelopersMz</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Painel -->
+      </div>
+    </div>
+  </div>
+</section>

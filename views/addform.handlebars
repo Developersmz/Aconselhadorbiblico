@@ -1,0 +1,77 @@
+<!-- Css Links -->
+<link rel="stylesheet" href="/css/forms.css">
+
+<!-- Javascript -->
+<script src="/js/forms.js"></script>
+
+
+<!-- Section -->
+<section class="sec-form">
+  <!-- Title -->
+  <div class="section-title">
+    <h1>Adicionar Elementos</h1>
+  </div>
+  <div class="add-actions">
+    <select id="select-options">
+      <option>Options to Add</option>
+      <option value="phrase">Add Phrase</option>
+      <option value="doutrine">Add Doutrine</option>
+   </select>
+   <button type="button" id="create-btn">Gerar</button>
+  </div>
+</section>
+<section>
+  <!-- FORM -->
+  <div id="form"></div>
+</section>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      var select = document.querySelector('#select-options')
+      var createButton = document.querySelector('#create-btn')
+
+      select.addEventListener("change", function() {
+        var selectedOption = select.value
+        renderDynamicComponent(selectedOption)
+      })
+
+      createButton.addEventListener("click", function() {
+        var selectedOption = select.value
+        renderDynamicComponent(selectedOption)
+      })
+  })
+
+function renderDynamicComponent(option){
+  switch (option){
+      case 'phrase':
+        createDynamicComponent(
+        'Adicionar Frase',
+        '/aconselhadorbiblico/add-phrase',
+        `
+          <textarea name="phrase" id="versicles-text" cols="30" rows="10" placeholder="Frase ou Citacao..." required></textarea><br>
+          <input type="text" name="versicle" placeholder="Fundamentacao" required><br>
+
+          `
+          )
+          break
+      
+      case 'doutrine':
+        createDynamicComponent(
+          'Adicionar Doutrina',
+          '/aconselhadorbiblico/add-doutrine',
+          `
+          <input type="text" name="title" placeholder="Título do Estudo" required><br>
+          <textarea name="content" id="versicles-text" cols="30" rows="10" placeholder="Conteúdo da doutrina" required></textarea><br>
+          `
+        )
+        break
+      
+      default:
+        window.location.reload()
+      
+      
+  }
+}
+</script>

@@ -1,0 +1,94 @@
+<!-- Css Links -->
+<link rel="stylesheet" href="/css/forms.css">
+
+<!-- Javascript -->
+<script src="/js/forms.js"></script>
+
+<!-- Phrases -->
+{{#if targetTable.phrase}}
+  <section class="form-to-edit phrase">
+    <div class="container">
+      <div class="row">
+        <div class="section-title">
+          <h1>Editing <span>"{{targetTable.phrase}}"</span></h1>
+        </div>
+        <div class="form-content">
+          <form action="/aconselhadorbiblico/saveEdited" method="post">
+            <textarea id="textareaphr" cols="30" rows="10" required>{{targetTable.phrase}}</textarea><br>
+            <input type="text" id="inputphr" value="{{targetTable.versicle}}" required><br>
+            <a href="" class="save-change" id="phrase" data-id="{{targetTable.id}}"><button type="submit">Atualizar</button></a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{{/if}}
+
+<!-- Doutrines -->
+{{#if targetTable.title}}
+  <section class="form-to-edit doutrine">
+    <div class="container">
+      <div class="row">
+        <div class="section-title">
+          <h1>Editing <span>"{{targetTable.title}}"</span></h1>
+        </div>
+        <div class="form-content">
+          <form action="/aconselhadorbiblico/saveEdited" method="post">
+            <input type="text" id="inputdout" value="{{targetTable.title}}" required><br>
+            <textarea id="textareadout" cols="30" rows="10" required>{{targetTable.text}}</textarea><br>
+            <a href="" class="save-change" id="doutrine" data-id="{{targetTable.id}}"><button type="submit">Atualizar</button></a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{{/if}}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+  var sendChange = document.querySelectorAll('.save-change')
+
+  sendChange.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault()
+
+      const itemID = link.getAttribute('data-id')
+      const target = link.getAttribute('id')
+
+      const inputphr = document.getElementById('inputphr') ? document.getElementById('inputphr').value : null
+      const textphr = document.getElementById('textareaphr') ? document.getElementById('textareaphr').value : null
+      const inputdout = document.getElementById('inputdout') ? document.getElementById('inputdout').value : null
+      const textdout = document.getElementById('textareadout') ? document.getElementById('textareadout').value : null
+
+
+      const result = {
+        itemID: itemID,
+        target: target,
+        inputphr: inputphr,
+        textphr: textphr,
+        inputdout: inputdout,
+        textdout: textdout,
+      }
+
+      fetch('/aconselhadorbiblico/saveEdited', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(result)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro ao enviar os dados');
+        }
+        //window.location.href = '/aconselhadorbiblico/saveEdited'
+      })
+      .catch(e => { 
+        console.error('E: ', e)
+      })
+    })
+  })
+})
+
+</script>

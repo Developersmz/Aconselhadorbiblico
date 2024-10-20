@@ -1,0 +1,112 @@
+<!-- CSS Stylesheet -->
+<link rel="stylesheet" href="/css/add_counsel.css">
+
+<h1>Inserir Conselhos em Massa</h1>
+
+<form action="/counsel/add-counsel" method="POST">
+    <div id="verses">
+        <div class="books">
+            <label for="book" id="book">Book:</label>
+            <select id="book" name="books" required>
+            <option value="genesis">Gênesis</option>
+            <option value="exodo">Êxodo</option>
+            <option value="levitico">Levítico</option>
+            <option value="numeros">Números</option>
+            <option value="deuteronomio">Deuteronômio</option>
+            <option value="josue">Josué</option>
+            <option value="juizes">Juízes</option>
+            <option value="rute">Rute</option>
+            <option value="1samuel">1 Samuel</option>
+            <option value="2samuel">2 Samuel</option>
+            <option value="1reis">1 Reis</option>
+            <option value="2reis">2 Reis</option>
+            <option value="1cronicas">1 Crônicas</option>
+            <option value="2cronicas">2 Crônicas</option>
+            <option value="esdras">Esdras</option>
+            <option value="neemias">Neemias</option>
+            <option value="ester">Ester</option>
+            <option value="jo">Jó</option>
+            <option value="salmos">Salmos</option>
+            <option value="proverbios">Provérbios</option>
+            <option value="eclesiastes">Eclesiastes</option>
+            <option value="canticos">Cânticos</option>
+            <option value="isaias">Isaías</option>
+            <option value="jeremias">Jeremias</option>
+            <option value="lamentacoes">Lamentações</option>
+            <option value="ezequiel">Ezequiel</option>
+            <option value="daniel">Daniel</option>
+            <option value="oseias">Oseias</option>
+            <option value="joel">Joel</option>
+            <option value="amos">Amós</option>
+            <option value="obadias">Obadias</option>
+            <option value="jonas">Jonas</option>
+            <option value="miqueias">Miqueias</option>
+            <option value="naum">Naum</option>
+            <option value="habacuque">Habacuque</option>
+            <option value="sofonias">Sofonias</option>
+            <option value="ageu">Ageu</option>
+            <option value="zacarias">Zacarias</option>
+            <option value="malaquias">Malaquias</option>
+            <option value="mateus">Mateus</option>
+            <option value="marcos">Marcos</option>
+            <option value="lucas">Lucas</option>
+            <option value="joao">João</option>
+            <option value="atos">Atos</option>
+            <option value="romanos">Romanos</option>
+            <option value="1corintios">1 Coríntios</option>
+            <option value="2corintios">2 Coríntios</option>
+            <option value="galatas">Gálatas</option>
+            <option value="efesios">Efésios</option>
+            <option value="filipenses">Filipenses</option>
+            <option value="colossenses">Colossenses</option>
+            <option value="1tessalonicenses">1 Tessalonicenses</option>
+            <option value="2tessalonicenses">2 Tessalonicenses</option>
+            <option value="1timoteo">1 Timóteo</option>
+            <option value="2timoteo">2 Timóteo</option>
+            <option value="tito">Tito</option>
+            <option value="filemom">Filemom</option>
+            <option value="hebreus">Hebreus</option>
+            <option value="tiago">Tiago</option>
+            <option value="1pedro">1 Pedro</option>
+            <option value="2pedro">2 Pedro</option>
+            <option value="1joao">1 João</option>
+            <option value="2joao">2 João</option>
+            <option value="3joao">3 João</option>
+            <option value="judas">Judas</option>
+            <option value="apocalipse">Apocalipse</option>
+        </select>
+        </div>
+        <div class="verse">
+            <label for="chapter">Capítulo ID:</label>
+            <input type="number" id="chapter" name="chapters[]" required>
+            
+            <label for="versenum">Número do Versículo:</label>
+            <input type="number" id="versenum" name="versenums[]" required>
+
+            <label for="text">Texto do Versículo:</label>
+            <textarea id="text" name="texts[]" required></textarea>
+        </div>
+    </div>
+
+    <button type="button" onclick="addVerse()" id="add">Adicionar mais Versículos</button>
+    <button type="submit" id="send">Enviar Versículos</button>
+</form>
+
+<script>
+    function addVerse() {
+        const versesDiv = document.getElementById('verses');
+        const newVerseDiv = document.createElement('div');
+        newVerseDiv.classList.add('verse');
+        newVerseDiv.innerHTML = `
+            <label for="chapterId">Capítulo ID:</label>
+            <input type="number" id="chapter" name="chapters[]" required>
+            
+            <label for="versenum">Número do Versículo:</label>
+            <input type="number" id="versenum" name="versenums[]" required>
+
+            <label for="text">Texto do Versículo:</label>
+            <textarea id="text" name="texts[]" required></textarea>
+        `;
+        versesDiv.appendChild(newVerseDiv);
+    }
+</script>

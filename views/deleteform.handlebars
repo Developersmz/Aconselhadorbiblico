@@ -1,0 +1,135 @@
+<!-- Css Links -->
+<link rel="stylesheet" href="/css/forms.css">
+
+<!-- Javascript -->
+<script src="/js/forms.js"></script>
+
+<!-- Section -->
+<section class="sec-form">
+  <!-- Title -->
+  <div class="section-title">
+    <h1>Excluir elementos</h1>
+  </div>
+  <div class="delete-actions">
+    <select id="select-options">
+      <option>Options to Delete</option>
+      <option value="phrase">Delete Phrases</option>
+      <option value="doutrine">Delete Doutrines</option>
+    </select>
+    <button type="button" id="create-btn">Gerar</button>
+  </div>
+  
+</section>
+
+<section class="content">
+  <!-- Phrases -->
+  <div id="phrases">
+    <div class="container">
+      <div class="row">
+        <div class="section-title">
+          <h1>Phrases</h1>
+        </div>
+        <div class="tab-content">
+          {{#each phrases}}
+          <div class="title">
+            <span>{{phrase}}</span>
+          </div>
+          <div class="action-button">
+            <a href="" class="send-data" id="phrase" data-id="{{id}}"><button>Excluir</button></a>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Doutrine -->
+  <div id="doutrines">
+    <div class="container">
+      <div class="row">
+        <div class="section-title">
+          <h1>Doutrines</h1>
+        </div>
+        <div class="tab-content">
+          {{#each doutrines}}
+          <div class="title">
+            <span>{{ title }}</span>
+          </div>
+          <div class="action-button">
+            <a href="" class="send-data" id="doutrine" data-id="{{id}}"><button>Excluir</button></a>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    var select = document.querySelector('#select-options')
+    var createButton = document.querySelector('#create-btn')
+
+    select.addEventListener("change", () => {
+      var selectedOption = select.value
+      showSection(selectedOption)
+    })
+
+    createButton.addEventListener('click', () => {
+      var selectedOption = select.value
+      showSection(selectedOption)
+    })
+
+  })
+
+  function showSection(section){
+      switch (section){
+        case 'phrase':
+          document.querySelector('#phrases').classList.add('active')
+          document.querySelector('#doutrines').classList.remove('active')
+          break
+        
+        case 'doutrine':
+          document.querySelector('#doutrines').classList.add('active')
+          document.querySelector('#phrases').classList.remove('active')
+          break
+        
+        default:
+          alert('Invalid section')
+      }
+    }
+
+  var sendDatas = document.querySelectorAll('.send-data')
+
+  sendDatas.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault()
+
+      var id = link.getAttribute('data-id')
+      var header = link.getAttribute('id')
+
+      var data = {
+        id: id,
+        header: header
+        }
+
+      fetch(`/aconselhadorbiblico/delete`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        if (!response.ok){
+          throw new Error('Erro ao enviar os dados')
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error)
+      })
+    })
+  })
+</script>

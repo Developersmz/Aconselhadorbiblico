@@ -1,0 +1,49 @@
+<!-- Css Links -->
+<link rel="stylesheet" href="/css/forms.css">
+
+<!-- Section -->
+<section class="sec-form">
+  <!-- Title -->
+  <div class="section-title">
+    <h1>Registo</h1>
+    <a href="/auth/login">Cadastre-se e torne-se um membro | <span>Já tenho uma conta!</span></a>
+  </div>
+  <!-- FORM -->
+  <div class="container">
+    {{#if error}}
+        <div class="alert alert-danger">
+          <p>{{error}}</p>
+        </div>
+    {{/if}}
+    {{#if success}}
+      <div class="alert alert-success">
+        <p>{{success}}</p>
+      </div>
+    {{/if}}
+    <div class="row">
+      <div class="user">
+        <form action="/auth/register" method="post">
+          <div class="div">
+            <input type="text" name="username" placeholder="Nome do usuário" required><br>
+          </div>
+          <div class="div">
+            <input type="email" name="email" placeholder="Email" required><br>
+          </div>
+          <div class="div">
+            <input type="password" name="password" placeholder="Crie uma palavra-passe" required>
+          </div>
+          <div class="div">
+            <input type="password" name="confpass" placeholder="Confirme a palavra-passe" required>
+          </div>
+          <button type="submit">registar</button>
+          <a href="/auth/login" class="btn">login</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Javascript -->
+<script src="/js/forms.js"></script>
+
+<!-- Section -->

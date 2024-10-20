@@ -1,0 +1,119 @@
+<!-- CSS Stylesheet -->
+<link rel="stylesheet" href="/css/counseling.css">
+
+<!-- Font Awesome Links --->
+<link rel="stylesheet" type="text/css" href="/css/fontawesome.css">
+
+<!-- Header -->
+<header class="header">
+  <div class="show-history">
+    <div><a id="history-btn"><i class="fas fa-history"></i></a></div>
+  </div>
+  <div class="logo">
+    <a href="/">AconselhadorBiblico</a>
+  </div>
+</header>
+<div class="history">
+  <div class="container">
+    <div class="row">
+      <section class="counsel-hist">
+        <div class="box">
+          {{#each history}} 
+          <div>
+            <a class="search-history" data-query="{{this.searchQuery}}">
+              {{ this.searchQuery }}
+            </a>
+          </div>
+          {{/each}}
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="counselings">
+    <div class="row">
+      <div class="counsel-model" id="counsel-results">
+        <!-- Counsel item -->
+        <div class="counsel">
+          {{#each results}}
+            <p class="item">
+              {{this.text}}
+            </p>
+          {{/each}}
+          {{#if results}}
+            <div class="verses-container">
+              <h4>Fundamentação</h4>
+              {{#each results}}
+                <p class="verses">
+                  {{name}} {{chapternum}}:{{versenum}},
+                </p>
+              {{/each}}
+            </div>
+          {{/if}}
+          {{#if error}}
+            <p class="item" id="error">{{error}}</p>
+          {{/if}}
+        </div> 
+        <!-- Counsel item -->
+      </div>
+    </div>
+  </div>
+  <div class="row section">
+    <div class="counsel-search">
+      <div class="input-search">
+        <form action="/counsel/counseling" method="post">
+          <input type="hidden" name="userId" value="{{id}}">
+          <input type="search" name="state" placeholder="Digite uma palavra ou uma frase" required>
+          <button type="submit" class="send-state"><i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.search-history').forEach(item => {
+  item.addEventListener('click', async (event) => {
+    event.preventDefault();
+    
+    const searchQuery = event.target.getAttribute('data-query');
+    
+    try {
+      // Faz a requisição AJAX
+      const response = await fetch(`/counsel/counseling/search?query=${searchQuery}`);
+      const results = await response.json();
+      
+      // Atualiza o HTML da área central com os resultados
+      const resultContainer = document.getElementById('counsel-results');
+      resultContainer.innerHTML = ''; // Limpa o conteúdo anterior
+      
+      // Renderiza os novos resultados
+      results.forEach(result => {
+        const resultHTML = `
+          <div class="counsel">
+            <p class="item">${result.text}</p>
+          </div>
+        `;
+        resultContainer.innerHTML += resultHTML;
+      });
+
+      let versesHTML = `<div class="verses-container"><h4>Fundamentação</h4>`
+
+      results.forEach(result => {
+        versesHTML += `
+          <p class="verses">${result.name} ${result.chapternum}:${result.versenum},</p>
+        `
+      })
+
+      versesHTML += `</div>`
+      resultContainer.innerHTML += versesHTML
+
+    } catch (error) {
+      console.error('Erro ao buscar resultados:', error);
+    }
+  });
+});
+</script>
+
+<script src="/js/counseling.js"></script>
