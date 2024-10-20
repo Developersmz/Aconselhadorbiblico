@@ -1,9 +1,7 @@
 require('dotenv').config()
 
 const express = require('express')
-const session = require('express-session')
 const nodemailer = require('nodemailer')
-const bcrypt = require('bcryptjs')
 const router = express.Router()
 
 
@@ -13,13 +11,6 @@ const {User, Phrase, Doutrine} = require('../models/aconselhadorModel')
 // Config Middleware
 router.use(express.urlencoded({ extended: true }))
 router.use(express.json())
-router.use(express.static('publlic'))
-router.use(session({
-    secret: 'secretdosession',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false }
-}))
 
 // Rota inicial
 router.get('/', async (req, res) => {
