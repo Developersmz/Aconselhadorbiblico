@@ -308,6 +308,7 @@ Home section
 	margin-bottom: 20px;
 	box-shadow: var(--shadow);
 	border: 1px solid var(--border);
+	padding: 10px;
 }
 .phrases-item .frase p{
 	font-size: 20px;
@@ -729,7 +730,7 @@ Contact us
 	}
 	/* Estudo */
 	.estudo-section .estudo-item p{
-		font-size: 1.9rem;
+		font-size: 1.7rem;
 	}
 	.estudo-section .section-text p{
 		font-size: 1.6rem;
@@ -737,6 +738,9 @@ Contact us
 	}
 	.estudo-section .content h3{
 		font-size: 18px;
+	}
+	.estudo-section .content p{
+		font-size: 1.9rem;
 	}
 	.estudo-section .btn{
 		font-size: 1.7rem;
