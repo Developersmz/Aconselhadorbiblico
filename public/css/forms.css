@@ -169,16 +169,18 @@ button,
     margin: 10px 0;
     border-radius: 10px;
     font-size: 15px;
-    border: 1px solid var(--main-color);
-    color: var(--main-color);
-    background: transparent;
+    border: 1px solid #f7b56563;
+    color: #fff;
+    background: #be8640;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-transform: capitalize;
 }
 
 button:hover{
-    border: 1px solid var(--white);
-    color: var(--white);
+    border: 1px solid #ffffff67;
+    /* color: var(--white); */
+    background: transparent;
 }
 
 /*-- ---------------
