@@ -122,7 +122,7 @@ router.post('/counseling', async (req, res) => {
         })
 
         const results = await sequelize.query(`
-            SELECT books.name, chapters.chapternum, verses.versenum, verses.text
+            SELECT Books.name, Chapters.chapternum, Verses.versenum, Verses.text
             FROM Verses
             JOIN Chapters ON Verses.chapterid = Chapters.id
             JOIN Books ON Chapters.bookid = Books.id
