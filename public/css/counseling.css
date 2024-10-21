@@ -235,6 +235,10 @@ section{
 	font-weight: 400;
 }
 /* Counsels Input */
+input[type="text"]::-webkit-clear-button,
+input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+}
 .counsel-search{
     width: 60%;
     height: 50px;

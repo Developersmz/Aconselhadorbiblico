@@ -22,7 +22,7 @@ router.post('/add-counsel', async (req, res) => {
         })
 
         if (chapters.length !== versenums.length || versenums.length !== texts.length) {
-            return res.status(400).send('Dados incompletos para inserção.');
+            return res.status(400).send('<h3>Dados incompletos para inserção.</h3>');
         }
 
         const verses = []
@@ -40,7 +40,7 @@ router.post('/add-counsel', async (req, res) => {
         }
         await Verse.bulkCreate(verses)
 
-        res.send('Versículos inseridos com sucesso!')
+        res.send('<h2>Versículos inseridos com sucesso!</h2>')
     } catch (e) {
         console.error('Erro ao inserir versículos em massa:', e);
         res.status(500).send('Erro ao inserir versículos.');
