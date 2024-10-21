@@ -24,18 +24,6 @@ router.get('/', async (req, res) => {
         user = await User.findByPk(userId)
     }
 
-    // function hashPassword(password) {
-    //     const saltRounds = 10; // Define o número de rounds para gerar o salt
-    //     bcrypt.hash(password, saltRounds, (err, hash) => {
-    //         if (err) {
-    //             console.error('Erro ao hashear a senha:', err);
-    //         } else {
-    //             console.log('Senha hasheada:', hash);
-    //         }
-    //     });
-    // }
-    // hashPassword('0115183aBC$')
-
     const phr = db_phrases.map(items => items.toJSON())
     const dout = db_doutrines.map(items => items.toJSON())
 
