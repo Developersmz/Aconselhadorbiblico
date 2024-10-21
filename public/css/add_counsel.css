@@ -52,16 +52,16 @@ button {
     cursor: pointer;
 }
 #add {
-    background-color: rgb(146, 89, 89);
+    background-color: #3add09;
     color: #fff;
 }
 #add:hover {
-    background-color: rgba(146, 89, 89, 0.719);
+    background-color: #3bdd09c0;
 }
 #send {
-    background-color: rgb(67, 67, 131);
+    background-color: #000ed8;
     color: #fff;
 }
 #send:hover {
-    background-color: rgba(67, 67, 131, 0.664);
+    background-color: #000ed8d2;
 }

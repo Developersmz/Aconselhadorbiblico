@@ -8,36 +8,36 @@
         <div class="books">
             <label for="book" id="book">Book:</label>
             <select id="book" name="books" required>
-            <option value="genesis">Gênesis</option>
-            <option value="exodo">Êxodo</option>
-            <option value="levitico">Levítico</option>
-            <option value="numeros">Números</option>
-            <option value="deuteronomio">Deuteronômio</option>
-            <option value="josue">Josué</option>
-            <option value="juizes">Juízes</option>
+            <option value="gênesis">Gênesis</option>
+            <option value="êxodo">Êxodo</option>
+            <option value="levítico">Levítico</option>
+            <option value="números">Números</option>
+            <option value="deuteronômio">Deuteronômio</option>
+            <option value="josué">Josué</option>
+            <option value="juízes">Juízes</option>
             <option value="rute">Rute</option>
             <option value="1samuel">1 Samuel</option>
             <option value="2samuel">2 Samuel</option>
             <option value="1reis">1 Reis</option>
             <option value="2reis">2 Reis</option>
-            <option value="1cronicas">1 Crônicas</option>
-            <option value="2cronicas">2 Crônicas</option>
+            <option value="1crônicas">1 Crônicas</option>
+            <option value="2crônicas">2 Crônicas</option>
             <option value="esdras">Esdras</option>
             <option value="neemias">Neemias</option>
             <option value="ester">Ester</option>
-            <option value="jo">Jó</option>
+            <option value="jó">Jó</option>
             <option value="salmos">Salmos</option>
-            <option value="proverbios">Provérbios</option>
+            <option value="provérbios">Provérbios</option>
             <option value="eclesiastes">Eclesiastes</option>
-            <option value="canticos">Cânticos</option>
-            <option value="isaias">Isaías</option>
+            <option value="cânticos">Cânticos</option>
+            <option value="isaías">Isaías</option>
             <option value="jeremias">Jeremias</option>
-            <option value="lamentacoes">Lamentações</option>
+            <option value="lamentações">Lamentações</option>
             <option value="ezequiel">Ezequiel</option>
             <option value="daniel">Daniel</option>
             <option value="oseias">Oseias</option>
             <option value="joel">Joel</option>
-            <option value="amos">Amós</option>
+            <option value="amós">Amós</option>
             <option value="obadias">Obadias</option>
             <option value="jonas">Jonas</option>
             <option value="miqueias">Miqueias</option>
@@ -50,28 +50,28 @@
             <option value="mateus">Mateus</option>
             <option value="marcos">Marcos</option>
             <option value="lucas">Lucas</option>
-            <option value="joao">João</option>
+            <option value="joão">João</option>
             <option value="atos">Atos</option>
             <option value="romanos">Romanos</option>
-            <option value="1corintios">1 Coríntios</option>
-            <option value="2corintios">2 Coríntios</option>
-            <option value="galatas">Gálatas</option>
-            <option value="efesios">Efésios</option>
+            <option value="1coríntios">1 Coríntios</option>
+            <option value="2coríntios">2 Coríntios</option>
+            <option value="gálatas">Gálatas</option>
+            <option value="efésios">Efésios</option>
             <option value="filipenses">Filipenses</option>
             <option value="colossenses">Colossenses</option>
             <option value="1tessalonicenses">1 Tessalonicenses</option>
             <option value="2tessalonicenses">2 Tessalonicenses</option>
-            <option value="1timoteo">1 Timóteo</option>
-            <option value="2timoteo">2 Timóteo</option>
+            <option value="1timóteo">1 Timóteo</option>
+            <option value="2timóteo">2 Timóteo</option>
             <option value="tito">Tito</option>
             <option value="filemom">Filemom</option>
             <option value="hebreus">Hebreus</option>
             <option value="tiago">Tiago</option>
             <option value="1pedro">1 Pedro</option>
             <option value="2pedro">2 Pedro</option>
-            <option value="1joao">1 João</option>
-            <option value="2joao">2 João</option>
-            <option value="3joao">3 João</option>
+            <option value="1joão">1 João</option>
+            <option value="2joão">2 João</option>
+            <option value="3joão">3 João</option>
             <option value="judas">Judas</option>
             <option value="apocalipse">Apocalipse</option>
         </select>
@@ -85,6 +85,9 @@
 
             <label for="text">Texto do Versículo:</label>
             <textarea id="text" name="texts[]" required></textarea>
+            
+            <button type="button" style="background-color: red; color: #fff; font-size: inherit;" onclick="removeVerse(this)">Remover</button>
+
         </div>
     </div>
 
@@ -106,7 +109,14 @@
 
             <label for="text">Texto do Versículo:</label>
             <textarea id="text" name="texts[]" required></textarea>
+        
+            <button type="button" style="background-color: red; color: #fff; font-size: inherit;" onclick="removeVerse(this)">Remover</button>
         `;
         versesDiv.appendChild(newVerseDiv);
+    }
+
+    function removeVerse(button) {
+        const versesDiv = button.parentElement
+        versesDiv.remove()
     }
 </script>
