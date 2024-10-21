@@ -123,10 +123,10 @@ router.post('/counseling', async (req, res) => {
 
         const results = await sequelize.query(`
             SELECT books.name, chapters.chapternum, verses.versenum, verses.text
-            FROM verses
-            JOIN chapters ON verses.chapterid = chapters.id
-            JOIN books ON chapters.bookid = books.id
-            WHERE MATCH(verses.text) AGAINST(:state IN NATURAL LANGUAGE MODE)
+            FROM Verses
+            JOIN Chapters ON Verses.chapterid = Chapters.id
+            JOIN Books ON Chapters.bookid = Books.id
+            WHERE MATCH(Verses.text) AGAINST(:state IN NATURAL LANGUAGE MODE)
             `, {
                 replacements: { state },
                 type: QueryTypes.SELECT
