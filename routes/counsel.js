@@ -302,8 +302,8 @@ router.post('/counseling', async (req, res) => {
             FROM Verses
             JOIN Chapters ON Verses.chapterid = Chapters.id
             JOIN Books ON Chapters.bookid = Books.id
-            LEFT JOIN Versethemes ON Verses.id = Versethemes.verseId
-            LEFT JOIN Themes ON Versethemes.themeId = Themes.id
+            LEFT JOIN VerseThemes ON Verses.id = VerseThemes.verseId
+            LEFT JOIN Themes ON VerseThemes.themeId = Themes.id
             WHERE MATCH(Verses.text) AGAINST(:state IN NATURAL LANGUAGE MODE)
                OR MATCH(Themes.name) AGAINST(:state IN NATURAL LANGUAGE MODE)
             ORDER BY (relevance + IFNULL(theme_relevance, 0)) DESC
