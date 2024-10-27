@@ -296,16 +296,16 @@ router.post('/counseling', async (req, res) => {
         const userId = req.session.userId
 
         const results = await sequelize.query(`
-            SELECT books.name, chapters.chapternum, verses.versenum, verses.text,
-               MATCH(verses.text) AGAINST(:state IN NATURAL LANGUAGE MODE) AS relevance,
-               MATCH(themes.name) AGAINST(:state IN NATURAL LANGUAGE MODE) AS theme_relevance
-            FROM verses
-            JOIN chapters ON verses.chapterid = chapters.id
-            JOIN books ON chapters.bookid = books.id
-            LEFT JOIN versethemes ON verses.id = versethemes.verseId
-            LEFT JOIN themes ON versethemes.themeId = themes.id
-            WHERE MATCH(verses.text) AGAINST(:state IN NATURAL LANGUAGE MODE)
-               OR MATCH(themes.name) AGAINST(:state IN NATURAL LANGUAGE MODE)
+            SELECT Books.name, Chapters.chapternum, Verses.versenum, Verses.text,
+               MATCH(Verses.text) AGAINST(:state IN NATURAL LANGUAGE MODE) AS relevance,
+               MATCH(Themes.name) AGAINST(:state IN NATURAL LANGUAGE MODE) AS theme_relevance
+            FROM Verses
+            JOIN Chapters ON Verses.chapterid = Chapters.id
+            JOIN Books ON Chapters.bookid = Books.id
+            LEFT JOIN Versethemes ON Verses.id = Versethemes.verseId
+            LEFT JOIN Themes ON Versethemes.themeId = Themes.id
+            WHERE MATCH(Verses.text) AGAINST(:state IN NATURAL LANGUAGE MODE)
+               OR MATCH(Themes.name) AGAINST(:state IN NATURAL LANGUAGE MODE)
             ORDER BY (relevance + IFNULL(theme_relevance, 0)) DESC
             LIMIT 20
             `, {
