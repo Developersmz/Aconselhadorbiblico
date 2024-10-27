@@ -71,6 +71,10 @@ const Book = db.sequelize.define('Book', {
     name: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    abrev: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 })
 
@@ -99,17 +103,31 @@ const Verse = db.sequelize.define('Verse', {
     ]
 })
 
+const Theme = db.sequelize.define('Theme', {
+    name: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+        unique: true
+    }
+});
+
+const VerseTheme = db.sequelize.define('VerseTheme', {});
+
+
 Book.hasMany(Chapter, { foreignKey: 'bookId' })
 Chapter.belongsTo(Book, { foreignKey: 'bookId' })
 Chapter.hasMany(Verse, { foreignKey: 'chapterId' })
 Verse.belongsTo(Chapter, { foreignKey: 'chapterId' })
+Verse.belongsToMany(Theme, {through: VerseTheme, foreignKey: 'verseId'})
+Theme.belongsToMany(Verse, {through: VerseTheme, foreignKey: 'themeId'})
+
 
 User.beforeCreate(async (user) => {
     const hash = await bcrypt.hash(user.password, 10)
     user.password = hash
 })
 
-// db.sequelize.sync({ alter: true })
+// db.sequelize.sync({ alter: true }).then(() => console.log("Banco de dados modificado")).catch((err) => console.log("Ocorreu um erro ao modificar a tabela: " + err))
 
 module.exports = {
     User: User,
@@ -118,5 +136,7 @@ module.exports = {
     CounselHistory,
     Book, 
     Chapter,
-    Verse
+    Verse,
+    Theme,
+    VerseTheme
 }

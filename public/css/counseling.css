@@ -182,9 +182,9 @@ section{
 .history-item{
     color: var(--white);
     padding: 10px;
-    font-size: 18px;
-    font-weight: 300;
-    font-family: inherit;
+    font-size: 1.7rem;
+    font-weight: 500;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .counsel .history-item {
 	display: none;
@@ -235,10 +235,6 @@ section{
 	font-weight: 400;
 }
 /* Counsels Input */
-input[type="text"]::-webkit-clear-button,
-input[type="search"]::-webkit-search-cancel-button {
-    display: none;
-}
 .counsel-search{
     width: 60%;
     height: 50px;

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
-  }, 
+  },
   "author": "developersmz",
   "dependencies": {
     "@elastic/elasticsearch": "^8.13.1",
@@ -27,6 +27,7 @@
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "sequelize": "^6.37.3",
-    "vuex": "^4.1.0"
+    "vuex": "^4.1.0",
+    "xml2js": "^0.6.2"
   }
 }
