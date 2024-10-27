@@ -112,12 +112,12 @@ router.use(express.json())
 //     }
 //   };
   
-  // Executa o script
-  const filePath = path.join(__dirname, '../acf.min.xml');
-  await processBibleXml(filePath);
+//   // Executa o script
+//   const filePath = path.join(__dirname, '../acf.min.xml');
+//   await processBibleXml(filePath);
   
-  res.send('Processamento da Bíblia iniciado. Verifique os logs para detalhes.');
-});
+//   res.send('Processamento da Bíblia iniciado. Verifique os logs para detalhes.');
+// });
 
 // Rota inicial
 router.get('/', async (req, res) => {
