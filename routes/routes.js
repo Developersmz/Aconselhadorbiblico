@@ -21,96 +21,96 @@ router.use(express.urlencoded({ extended: true }))
 router.use(express.json())
 
 // Insert Bible
-router.get('/insert', async (req, res) => {
-  const processBibleXml = async (filePath) => {
-    try {
-        // Lendo e parseando o arquivo XML
-        const xmlData = fs.readFileSync(filePath, 'utf8');
-        const parser = new xml2js.Parser();
-        const result = await parser.parseStringPromise(xmlData);
+// router.get('/insert', async (req, res) => {
+//   const processBibleXml = async (filePath) => {
+//     try {
+//         // Lendo e parseando o arquivo XML
+//         const xmlData = fs.readFileSync(filePath, 'utf8');
+//         const parser = new xml2js.Parser();
+//         const result = await parser.parseStringPromise(xmlData);
 
-        // Acessando a lista de livros
-        const books = result.bible?.book || [];
-        if (books.length === 0) {
-            console.error('Não foi possível encontrar a lista de livros.');
-            return;
-        }
+//         // Acessando a lista de livros
+//         const books = result.bible?.book || [];
+//         if (books.length === 0) {
+//             console.error('Não foi possível encontrar a lista de livros.');
+//             return;
+//         }
 
-        // Iniciando uma transação no banco de dados
-        await sequelize.transaction(async (transaction) => {
-            for (const book of books) {
-                const bookName = book.$.name.trim();
-                const bookAbbrev = book.$.abbrev.trim();
+//         // Iniciando uma transação no banco de dados
+//         await sequelize.transaction(async (transaction) => {
+//             for (const book of books) {
+//                 const bookName = book.$.name.trim();
+//                 const bookAbbrev = book.$.abbrev.trim();
 
-                // Criando ou encontrando o livro
-                const [createdBook, created] = await Book.findOrCreate({
-                    where: { 
-                        name: bookName,
-                        abrev: bookAbbrev
-                    },
-                    defaults: { createdAt: new Date(), updatedAt: new Date() },
-                    transaction
-                });
+//                 // Criando ou encontrando o livro
+//                 const [createdBook, created] = await Book.findOrCreate({
+//                     where: { 
+//                         name: bookName,
+//                         abrev: bookAbbrev
+//                     },
+//                     defaults: { createdAt: new Date(), updatedAt: new Date() },
+//                     transaction
+//                 });
 
-                if (created) {
-                    console.log(`Livro ${bookName} inserido com sucesso.`);
-                } else {
-                    console.log(`Livro ${bookName} já existe.`);
-                }
+//                 if (created) {
+//                     console.log(`Livro ${bookName} inserido com sucesso.`);
+//                 } else {
+//                     console.log(`Livro ${bookName} já existe.`);
+//                 }
 
-                const chapters = book.c || [];
+//                 const chapters = book.c || [];
 
-                // Processando cada capítulo
-                for (const chapter of chapters) {
-                    const chapterNumber = parseInt(chapter.$.n, 10);
+//                 // Processando cada capítulo
+//                 for (const chapter of chapters) {
+//                     const chapterNumber = parseInt(chapter.$.n, 10);
 
-                    // Criando ou encontrando o capítulo
-                    const [createdChapter] = await Chapter.findOrCreate({
-                        where: {
-                            chapternum: chapterNumber,
-                            bookId: createdBook.id
-                        },
-                        defaults: { createdAt: new Date(), updatedAt: new Date() },
-                        transaction
-                    });
+//                     // Criando ou encontrando o capítulo
+//                     const [createdChapter] = await Chapter.findOrCreate({
+//                         where: {
+//                             chapternum: chapterNumber,
+//                             bookId: createdBook.id
+//                         },
+//                         defaults: { createdAt: new Date(), updatedAt: new Date() },
+//                         transaction
+//                     });
 
-                    // let chapterId = chapterNumber
-                    const versesToInsert = [];
+//                     // let chapterId = chapterNumber
+//                     const versesToInsert = [];
 
-                    // Adicionando versículos ao capítulo atual
-                    for (const verse of chapter.v || []) {
-                        const verseNumber = parseInt(verse.$.n, 10);
-                        const verseText = verse._.trim();
+//                     // Adicionando versículos ao capítulo atual
+//                     for (const verse of chapter.v || []) {
+//                         const verseNumber = parseInt(verse.$.n, 10);
+//                         const verseText = verse._.trim();
 
-                        versesToInsert.push({
-                            versenum: verseNumber,
-                            text: verseText,
-                            createdAt: new Date(),
-                            updatedAt: new Date(),
-                            chapterId: createdChapter.id
-                        });
-                    }
+//                         versesToInsert.push({
+//                             versenum: verseNumber,
+//                             text: verseText,
+//                             createdAt: new Date(),
+//                             updatedAt: new Date(),
+//                             chapterId: createdChapter.id
+//                         });
+//                     }
 
-                    // Inserindo versículos em lote para o capítulo atual
-                    const BATCH_SIZE = 50;
-                    for (let i = 0; i < versesToInsert.length; i += BATCH_SIZE) {
-                        const batch = versesToInsert.slice(i, i + BATCH_SIZE);
-                        try {
-                            await Verse.bulkCreate(batch, { transaction });
-                            console.log(`Inserido lote de ${batch.length} versículos para o capítulo ${chapterNumber} do livro ${bookName}`);
-                        } catch (err) {
-                            console.error(`Erro ao inserir lote de versículos no capítulo ${chapterNumber} do livro ${bookName}: ${err.message}`);
-                        }
-                    }
-                }
-            }
-      });
+//                     // Inserindo versículos em lote para o capítulo atual
+//                     const BATCH_SIZE = 50;
+//                     for (let i = 0; i < versesToInsert.length; i += BATCH_SIZE) {
+//                         const batch = versesToInsert.slice(i, i + BATCH_SIZE);
+//                         try {
+//                             await Verse.bulkCreate(batch, { transaction });
+//                             console.log(`Inserido lote de ${batch.length} versículos para o capítulo ${chapterNumber} do livro ${bookName}`);
+//                         } catch (err) {
+//                             console.error(`Erro ao inserir lote de versículos no capítulo ${chapterNumber} do livro ${bookName}: ${err.message}`);
+//                         }
+//                     }
+//                 }
+//             }
+//       });
   
-      console.log('Bíblia inserida com sucesso no banco de dados!');
-    } catch (error) {
-      console.error('Erro ao processar o arquivo XML:', error);
-    }
-  };
+//       console.log('Bíblia inserida com sucesso no banco de dados!');
+//     } catch (error) {
+//       console.error('Erro ao processar o arquivo XML:', error);
+//     }
+//   };
   
   // Executa o script
   const filePath = path.join(__dirname, '../acf.min.xml');
