@@ -128,7 +128,6 @@ User.beforeCreate(async (user) => {
 })
 
 // db.sequelize.sync({ alter: true }).then(() => console.log("Banco de dados modificado")).catch((err) => console.log("Ocorreu um erro ao modificar a tabela: " + err))
-db.sequelize.sync({ alter: true })
 
 module.exports = {
     User: User,
