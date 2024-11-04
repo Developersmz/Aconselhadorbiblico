@@ -723,7 +723,7 @@ Contact us
 	}
 
 	.header .nav a{
-		color: var(--white-light);
+		color: var(--white);
 		display: block;
 		margin: 1.5rem;
 		padding: .5rem;
