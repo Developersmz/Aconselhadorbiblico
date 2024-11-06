@@ -21,7 +21,7 @@
           {{#each history}} 
           <div>
             <a class="search-history" data-query="{{this.searchQuery}}">
-              {{ this.searchQuery }}
+              {{ truncate this.searchQuery 20 }}
             </a>
           </div>
           {{/each}}
@@ -64,7 +64,7 @@
       <div class="input-search">
         <form action="/counsel/counseling" method="post">
           <input type="hidden" name="userId" value="{{id}}">
-          <input type="search" name="state" placeholder="Digite uma palavra ou uma frase" required>
+          <input type="text" name="state" placeholder="Digite uma palavra ou uma frase" required>
           <button type="submit" class="send-state"><i class="fas fa-paper-plane"></i></button>
         </form>
       </div>

@@ -142,9 +142,21 @@ section{
     border-right: 1px solid var(--border);
     transition: transform 0.5s ease;
     transform: translateX(-100%);
+	overflow-y: auto;
 }
 .history.opened{
     transform: translateX(0%);
+}
+.history::-webkit-scrollbar{
+	width: .8rem;
+}
+.history::-webkit-scrollbar-track{
+	background: transparent;
+}
+.history::-webkit-scrollbar-thumb{
+	background: #cecece1a;
+	transition: all 0.3s ease;
+	box-shadow: var(--shadow);
 }
 .show-history{
     position: relative;
@@ -159,9 +171,6 @@ section{
 }
 .counsel-hist{
     position: relative;
-}
-.counsel-hist .box{
-    position: sticky;
 }
 .counsel-hist .box div {
 	border-bottom: 1px solid #cccccc15;

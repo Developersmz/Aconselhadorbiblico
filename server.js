@@ -32,13 +32,13 @@ app.use(session({
 const hdbs = handlebars.create({
     helpers: {
         truncate: function (text, length) {
-            if (text.length > length) {
-                return text.substring(0, length) + '...'
+            if (typeof text === 'string' && text.length > length) {
+                return text.substring(0, length) + '...';
             }
-            return text
+            return text || '';
         }
     }
-})
+});
 
 const hbs = handlebars.create({ defaultLayout: 'main' }, {allowProtoMethodsByDefault: true})
 app.engine('handlebars', hbs.engine)
