@@ -124,6 +124,7 @@ router.get('/', async (req, res) => {
     const db_phrases = await Phrase.findAll()
     const db_doutrines = await Doutrine.findAll()
 
+    let currentYear = new Date().getFullYear()
     const userId = req.session.userId
     let user = ""
 
@@ -136,7 +137,7 @@ router.get('/', async (req, res) => {
     const phr = db_phrases.map(items => items.toJSON())
     const dout = db_doutrines.map(items => items.toJSON())
 
-    res.render('index', {db_phrases: phr, db_doutrines: dout, user: user.dataValues })
+    res.render('index', {db_phrases: phr, db_doutrines: dout, user: user.dataValues, currentYear })
     
 })
 
