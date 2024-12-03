@@ -639,7 +639,7 @@ Contact us
 .footer .email-address{
 	text-transform: lowercase;
 }
-.footer-item .links a{
+.footer-item a{
 	color: var(--white);
 }
 .footer-item .social-links{
