@@ -137,7 +137,12 @@ router.get('/', async (req, res) => {
     const phr = db_phrases.map(items => items.toJSON())
     const dout = db_doutrines.map(items => items.toJSON())
 
-    res.render('index', {db_phrases: phr, db_doutrines: dout, user: user.dataValues, currentYear })
+    res.render('index', 
+        { db_phrases: phr, 
+          db_doutrines: dout, 
+          user: user.dataValues,
+          title: "Aconselhador Bíblico | Conselho Diário",
+        })
     
 })
 

@@ -7,7 +7,7 @@ const { checkLogin, checkAdmin } = require('../configs/passport')
 
 // Create new counseling
 router.get('/addcounseling', checkLogin, (req, res) => {
-    res.render('addcounseling')
+    res.render('addcounseling', { title: "Aconselhador Bíblico | Conselhos" })
 })
 
 // Associate verses

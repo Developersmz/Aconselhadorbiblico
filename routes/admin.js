@@ -24,18 +24,23 @@ router.get('/admin/dashboard', checkLogin, checkAdmin, async (req, res) => {
         count_phrases: count_phrases, 
         count_doutrines: count_doutrines,
         db_users: users,
-        count_users: count_users
+        count_users: count_users,
+        title: "Aconselhador Bíblico | Dashboard",
     })
 })
 
 // Add
 router.get('/add', checkLogin, checkAdmin, (req, res) => {
-    res.render('addform')
+    res.render('addform', {
+        title: "Aconselhador Bíblico | Add",
+    })
 })
 
 // Output
 router.get('/output', (req, res) => {
-    res.render('output')
+    res.render('output', {
+        title: "Aconselhador Bíblico | Output",
+    })
 })
 
 // Add Phrase
@@ -106,7 +111,7 @@ router.get('/edit', checkLogin, checkAdmin, async (req, res) => {
     phr = phrases.map(items => items.toJSON())
     dout = doutrines.map(items => items.toJSON())
 
-    res.render('editform', {phrases: phr, doutrines: dout})
+    res.render('editform', {phrases: phr, doutrines: dout, title: "Aconselhador Bíblico | Edit",})
 })
 
 // Edit Content
@@ -127,7 +132,7 @@ router.get('/form-to-edit/:id', checkLogin, checkAdmin, async (req, res) => {
 
         }
         // Render form to edit
-        return res.render('form-to-edit', {targetTable: converted})
+        return res.render('form-to-edit', {targetTable: converted, title: `Aconselhador Bíblico | Editing ${id}`,})
          
     } catch (e) {
         res.redirect('/')

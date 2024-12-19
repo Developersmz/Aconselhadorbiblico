@@ -7,7 +7,7 @@ const { passport } = require('../configs/passport')
 
 
 router.get('/register', (req, res) => {
-    res.render('register')
+    res.render('register', { title: "Aconselhador Bíblico | Signup", })
 })
 
 router.post('/register', async (req, res) => {
@@ -40,7 +40,7 @@ router.post('/register', async (req, res) => {
 })
 
 router.get('/login', (req, res) => {
-    res.render('login')
+    res.render('login', { title: "Aconselhador Bíblico | Signin", })
 })
 
 router.post('/login', (req, res, next) => {
