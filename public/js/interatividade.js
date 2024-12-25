@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
+	// Clean URL after creatind an account and redirect to signin
+	const urlParams = new URLSearchParams(window.location.search)
+	if (urlParams.get('welcome') === 'true') {
+		const cleanUrl = window.location.href.split('?')[0]
+		window.history.replaceState({}, document.title, cleanUrl)
+		
+		location.reload()
+	}
+	
 	settBtn = document.querySelector('.settings')
 	moreBtn = document.querySelectorAll('.btn-see')
 	moreContent = document.querySelector('#more-content')

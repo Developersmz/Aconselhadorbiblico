@@ -30,7 +30,14 @@ router.post('/register', async (req, res) => {
             password
         })
 
-        res.redirect('/')
+        req.logIn(newUser, (err) => {
+            if (err) {
+                console.error(err)
+                return res.render('register', { error: "Erro ao autenticar o usuário, tente novamente." });
+            }
+            req.session.userId = newUser.id;
+            return res.redirect('/?welcome=true')
+        })
 
     } catch (error) {
         console.error(error);
