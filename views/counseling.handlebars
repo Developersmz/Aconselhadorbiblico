@@ -63,8 +63,10 @@
     <div class="counsel-search">
       <div class="input-search">
         <form action="/counsel/counseling" method="post">
-          <input type="hidden" name="userId" value="{{id}}">
-          <input type="text" name="state" placeholder="Digite uma palavra ou uma frase" required>
+          <div class="input-group">
+              <input type="hidden" name="userId" value="{{id}}">
+              <input type="text" name="state" placeholder="Digite uma palavra ou uma frase" required>
+          </div>
           <button type="submit" class="send-state"><i class="fas fa-paper-plane"></i></button>
         </form>
       </div>

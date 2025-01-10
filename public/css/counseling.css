@@ -289,23 +289,32 @@ section{
     width: 100%;
     height: 100%;
     border-radius: 10px;
+	position: relative;
+}
+form {
+	display: flex;
+	align-items: center;
+	position: relative;
+	border-radius: 15px;
+	border: 2px solid var(--cool-grey);
+}
+form .input-group {
+	flex-grow: 1;
 }
 form input{
     height: 50px;
-	width: 100%;
+	width: 95%;
 	font-size: 1.6rem;
 	color: var(--white);
 	padding: 1rem;
 	text-transform: none;
 	background: var(--bg);
-	border: 2px solid var(--cool-grey);
-	border-radius: 10px;
+	border-radius: 15px 0 0 15px ;
+	border: none;
+	outline: none;
 }
 input::placeholder{
     color: var(--main-color);
-}
-input:focus{
-    border: 2px solid var(--main-color);
 }
 .send-state{
     position: absolute;
@@ -316,6 +325,8 @@ input:focus{
 	cursor: pointer;
 	background: transparent;
 	border: none;
+	z-index: 1000;
+	margin-left: 0.5rem;
 }
 .send-state:hover{
     color: white;
@@ -340,15 +351,11 @@ input:focus{
 		margin: 10px 0;
 		font-size: 1.6rem;
 	}
-	/* .counselings .counsel .verses {
-		font-size: 1.3rem;
-	} */
 	.counsel-search {
-		width: 80%;
-		margin: auto;
+		width: 90%;
 	}
 	.counsel-search form input {
-		border: 1px solid var(--cool-grey);
+		width: 88%;
 	}
 	.counsel-search input::placeholder{
 		font-size: 1.3rem;
