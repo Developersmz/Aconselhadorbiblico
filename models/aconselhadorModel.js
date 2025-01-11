@@ -46,7 +46,16 @@ const Doutrine = db.sequelize.define('Doutrine', {
         allowNull: false
     }
 })
-
+const ContentCache = db.sequelize.define('ContentCache', {
+    type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    referenceId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
+})
 const CounselHistory = db.sequelize.define('CounselHistory', {
     userId: {
         type: DataTypes.INTEGER,
@@ -113,6 +122,10 @@ const Theme = db.sequelize.define('Theme', {
 
 const VerseTheme = db.sequelize.define('VerseTheme', {});
 
+ContentCache.belongsTo(Phrase, { foreignKey: 'referenceId', constrains: false, as: 'phrase' })
+ContentCache.belongsTo(Doutrine, { foreignKey: 'referenceId', constrains: false, as: 'doutrine' })
+Phrase.hasMany(ContentCache, { foreignKey: 'referenceId', constrains: false, as: 'cache' })
+Doutrine.hasMany(ContentCache, { foreignKey: 'referenceId', constrains: false, as: 'cache' })
 
 Book.hasMany(Chapter, { foreignKey: 'bookId' })
 Chapter.belongsTo(Book, { foreignKey: 'bookId' })
@@ -127,12 +140,13 @@ User.beforeCreate(async (user) => {
     user.password = hash
 })
 
-// db.sequelize.sync({ alter: true }).then(() => console.log("Banco de dados modificado")).catch((err) => console.log("Ocorreu um erro ao modificar a tabela: " + err))
+db.sequelize.sync({ alter: true }).then(() => console.log("Banco de dados modificado")).catch((err) => console.log("Ocorreu um erro ao modificar a tabela: " + err))
 
 module.exports = {
     User: User,
     Phrase: Phrase,
     Doutrine: Doutrine,
+    ContentCache,
     CounselHistory,
     Book, 
     Chapter,

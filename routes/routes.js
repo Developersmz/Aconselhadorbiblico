@@ -1,20 +1,13 @@
 require('dotenv').config()
 
 const express = require('express')
-const session = require('express-session')
 const nodemailer = require('nodemailer')
-const bcrypt = require('bcryptjs')
 const router = express.Router()
 const fs = require('fs')
 const xml2js = require('xml2js')
 const path = require('path')
 const { sequelize } = require('../models/db')
-const { Book, Chapter, Verse } = require('../models/aconselhadorModel')
-
-
-// Models
-const {User, Phrase, Doutrine} = require('../models/aconselhadorModel')
-const { Json } = require('sequelize/lib/utils')
+const { User, Book, Chapter, Verse, Phrase, Doutrine, ContentCache } = require('../models/aconselhadorModel')
 
 // Config Middleware
 router.use(express.urlencoded({ extended: true }))
@@ -132,17 +125,32 @@ router.get('/', async (req, res) => {
         user = await User.findByPk(userId)
     }
 
+    try {
+        // Busca o cache
+        const cachedPhrases = await ContentCache.findAll({
+            where: { type: 'Phrase' },
+            include: { model: Phrase, as: 'phrase' },
+        });
 
+        const cachedDoutrines = await ContentCache.findAll({
+            where: { type: 'Doutrine' },
+            include: { model: Doutrine, as: 'doutrine' },
+        });
 
-    const phr = db_phrases.map(items => items.toJSON())
-    const dout = db_doutrines.map(items => items.toJSON())
+        // Mapeia os resultados para arrays de JSON
+        const phrases = cachedPhrases.map((cache) => cache.phrase.toJSON());
+        const doutrines = cachedDoutrines.map((cache) => cache.doutrine.toJSON());
 
-    res.render('index', 
-        { db_phrases: phr, 
-          db_doutrines: dout, 
-          user: user.dataValues,
-          title: "Aconselhador Bíblico | Conselho Diário",
+        res.render('index', 
+            { db_phrases: phrases.length ? phrases : [], 
+              db_doutrines: doutrines.length ? doutrines : [], 
+              user: user ? user.dataValues : null,
+              title: "Aconselhador Bíblico | Conselho Diário",
         })
+    } catch (error) {
+        console.error('Erro ao carregar conteúdo:', error);
+        res.status(500).send('Erro interno do servidor');
+    }
     
 })
 

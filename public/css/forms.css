@@ -180,13 +180,17 @@ select:focus{
 }
 textarea{
     color: var(--main-color);
-    min-width: 40rem;
     padding: 1rem;
     margin: 10px 0;
     border: 1px solid #fffc5b28;
     border-radius: 20px;
     background: transparent;
     resize: none;   
+}
+.textarea {
+    width: 90%;
+    height: 10rem;
+    padding: 1.5rem;
 }
 textarea:focus{
     border: 1px solid var(--focus);

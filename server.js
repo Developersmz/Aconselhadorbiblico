@@ -8,6 +8,9 @@ const MySQLStore = require('express-mysql-session')(session)
 const app = express()
 const bodyParser = require('body-parser')
 
+const selectMultiplePhrasesAndDoutrines = require('./utils/utils')
+const schedule = require('node-schedule')
+
 const port = 3000
 
 // Sessions
@@ -28,6 +31,15 @@ app.use(session({
         maxAge: 1000 * 60 * 60
     }
 }))
+
+// schedule content update (00:00)
+schedule.scheduleJob('0 0 * * *', async () => {
+    try {
+        await selectMultiplePhrasesAndDoutrines();
+    } catch (error) {
+        console.error('Erro na execução do agendamento de teste: ', error);
+    }
+});
 
 const hdbs = handlebars.create({
     helpers: {
