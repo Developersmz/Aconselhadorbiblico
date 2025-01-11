@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { checkLogin, checkAdmin } = require('../configs/passport')
 const { User, Phrase, Doutrine } = require('../models/aconselhadorModel')
+const { body, validationResult } = require('express-validator')
 
 // Admin operations
 
@@ -44,65 +45,81 @@ router.get('/output', (req, res) => {
 })
 
 // Add Phrase
-router.post('/add-phrase', checkLogin, checkAdmin, async (req, res) => {
+router.post(
+    '/add-phrase',
+    [
+        body('phrase').trim().notEmpty().withMessage('A frase é obrigatório!'),
+        body('versicle').trim().notEmpty().withMessage('O verso é obrigatório!'),
+    ],
+    async (req, res) => {
+        const errors = validationResult(req);
 
-    const data = {
-        phrase: req.body.phrase,
-        versicle: req.body.versicle
-    }
+        // Verificar erros de validação
+        if (!errors.isEmpty()) {
+            return res.render('output', {
+                error: errors.array().map(err => err.msg).join(' '),
+            });
+        }
 
-    const numberEntries = await Phrase.count()
+        const { phrase, versicle } = req.body;
 
-    if (numberEntries < 10) {
-        await Phrase.create(data)
-        .then(() => res.render('output', {success: 'Tabela atualizada com sucesso!'})).catch(() => res.render('output', {error: 'Ocorreu um erro ao atualizar a tabela!'}))
-    } else {
         try {
-            const lastEntry = await Phrase.findOne({
-                order: [['id', 'ASC']]
-            })
-    
-            if (lastEntry) {
-                await Phrase.update(data, {
-                    where: { id: lastEntry.id }
-                })
-                .then(() => res.render('output', {success: 'Tabela atualizada com sucesso!'})).catch(() => res.render('output', {error: 'Ocorreu um erro ao atualizar a tabela!'}))
+            const [newDoutrine, created] = await Phrase.findOrCreate({
+                where: { phrase },
+                defaults: { versicle: versicle },
+            });
+
+            if (created) {
+                return res.render('output', { success: 'Frase adicionada com sucesso!' });
+            } else {
+                return res.render('output', { error: 'Essa frase já existe!' });
             }
         } catch (error) {
-            res.status(500).send('Error updating entry');
+            console.error('Erro ao criar frase:', error);
+            return res.render('output', {
+                error: 'Ocorreu um erro ao atualizar a tabela. Tente novamente mais tarde!',
+            });
         }
     }
-})
+);
 // Add Doutrine
-router.post('/add-doutrine', async (req, res) => {
-    const data = {
-        title: req.body.title,
-        text: req.body.content
-    }
+router.post(
+    '/add-doutrine',
+    [
+        body('title').trim().notEmpty().withMessage('O título é obrigatório!'),
+        body('content').trim().notEmpty().withMessage('O conteúdo é obrigatório!'),
+    ],
+    async (req, res) => {
+        const errors = validationResult(req);
 
-    const numberEntries =  await Doutrine.count()
+        // Verificar erros de validação
+        if (!errors.isEmpty()) {
+            return res.render('output', {
+                error: errors.array().map(err => err.msg).join(' '),
+            });
+        }
 
-    if (numberEntries < 5) {
-        await Doutrine.create(data)
-        .then(() => res.render('output', {success: 'Tabela atualizada com sucesso!'})).catch(() => res.render('output', {error: 'Ocorreu um erro ao atualizar a tabela!'}))
-    } else {
+        const { title, content } = req.body;
+
         try {
-            const lastEntry = await Doutrine.findOne({
-                order: [['id', 'ASC']]
-            })
+            const [newDoutrine, created] = await Doutrine.findOrCreate({
+                where: { title },
+                defaults: { text: content },
+            });
 
-            if (lastEntry) {
-                console.log(data)
-                await Doutrine.update(data, {
-                    where: { id: lastEntry.id }
-                })
-                .then(() => res.render('output', {success: 'Tabela atualizada com sucesso!'})).catch(() => res.render('output', {error: 'Ocorreu um erro ao atualizar a tabela!'}))
+            if (created) {
+                return res.render('output', { success: 'Doutrina adicionada com sucesso!' });
+            } else {
+                return res.render('output', { error: 'Essa doutrina já existe!' });
             }
         } catch (error) {
-            res.status(500).send('Error updating entry');
+            console.error('Erro ao criar doutrina:', error);
+            return res.render('output', {
+                error: 'Ocorreu um erro ao atualizar a tabela. Tente novamente mais tarde!',
+            });
         }
     }
-})
+);
 // Edit
 router.get('/edit', checkLogin, checkAdmin, async (req, res) => {
     phrases = await Phrase.findAll()
