@@ -1,49 +1,53 @@
 <!-- Css Links -->
-<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/auth.css">
 
-<!-- Section -->
-<section class="sec-form">
-  <!-- Title -->
-  <div class="section-title">
-    <h1>Registo</h1>
-    <a href="/auth/login">Cadastre-se e torne-se um membro | <span>Já tenho uma conta!</span></a>
-  </div>
-  <!-- FORM -->
+<main class="main">
   <div class="container">
-    {{#if error}}
-        <div class="alert alert-danger">
-          <p>{{error}}</p>
-        </div>
-    {{/if}}
-    {{#if success}}
-      <div class="alert alert-success">
-        <p>{{success}}</p>
-      </div>
-    {{/if}}
+    <div class="bg-img"></div>
     <div class="row">
-      <div class="user">
+      <div class="auth-form">
+        <div class="section-title">
+          <h1>AconselhadorBíblico</h1>
+          <p>Bem-vindo! Cadastre-se e comece sua jornada espiritual conosco.</p>
+        </div>
+        <div class="register-intro">
+          <p>
+            Ao criar uma conta, você terá acesso a conselhos bíblicos personalizados, reflexões diárias e ferramentas para fortalecer sua fé.
+          </p>
+          <p>
+            Já tem uma conta? <a href="/auth/login">Faça login aqui</a>.
+          </p>
+        </div>
+        {{#if error}}
+          <div class="alert alert-danger">
+            <p>{{error}}</p>
+          </div>
+        {{/if}}
+        {{#if success}}
+          <div class="alert alert-success">
+            <p>{{success}}</p>
+          </div>
+        {{/if}}
+
         <form action="/auth/register" method="post">
-          <div class="div">
-            <input type="text" name="username" placeholder="Nome do usuário" required><br>
+          <div class="form-group">
+            <input type="text" name="username" class="form-control" placeholder="Nome do usuário" required><br>
           </div>
-          <div class="div">
-            <input type="email" name="email" placeholder="Email" required><br>
+          <div class="form-group">
+            <input type="email" name="email" class="form-control" placeholder="Email" required><br>
           </div>
-          <div class="div">
-            <input type="password" name="password" placeholder="Crie uma palavra-passe" required>
+          <div class="form-group">
+            <input type="password" name="password" class="form-control" placeholder="Crie uma palavra-passe" required>
           </div>
-          <div class="div">
-            <input type="password" name="confpass" placeholder="Confirme a palavra-passe" required>
+          <div class="form-group">
+            <input type="password" name="confpass" class="form-control" placeholder="Confirme a palavra-passe" required>
           </div>
-          <button type="submit">registar</button>
-          <a href="/auth/login" class="btn">login</a>
+          <div class="submit">
+            <button type="submit">registar</button>
+          </div>
+
         </form>
       </div>
     </div>
   </div>
-</section>
-
-<!-- Javascript -->
-<script src="/js/forms.js"></script>
-
-<!-- Section -->
+</main>

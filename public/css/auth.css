@@ -50,13 +50,12 @@ Fonts
 Global Settings 
 ---------------*/
 *{
-	font-family: "Roboto", sans-serif;
+	font-family: "Poppins", sans-serif;
 	margin: 0;
 	box-sizing: border-box;
 	padding: 0;
 	outline: none;
 	text-decoration: none;
-	/* transition: .3s linear; */
 }
 ul{
 	list-style: none;
@@ -85,152 +84,145 @@ html::-webkit-scrollbar-thumb{
 }
 
 body{
-	background: var(--background);
-    color: var(--white-light);
+	font-size: 1rem;
+    overflow-x: hidden;
 }
-section{
-	padding: 2rem 7%;
-	overflow: hidden;
+body::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    opacity: 0.6;
+    z-index: -1;
 }
 .container{
 	max-width: 1170px;
 	margin: auto;
 }
-.row{
-	display: flex;
-	flex-wrap: wrap;
-	margin-top: 11%;
-    text-align: center;
-}
-.section-title{
-    -ms-flex: 0 0 100%;
-    flex: 0 0 100%;
+
+img {
+    vertical-align: middle;
     max-width: 100%;
-    margin-bottom: 60px;
+}
+.main {
+    min-height: 100vh;
+}
+.container{
+	max-width: 1170px;
+	margin: auto;
+}
+ .container .bg-img {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    min-height: 110vh;
+    background-image: url("../img/2.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+ }
+.section-title,
+.register-intro{
+    padding: 0 0 30px 0;
     text-align: center;
 }
 .section-title h1{
-    font-size: 32px;
-    color: var(--main-color);
-    font-family: inherit;
+    font-size: 2em;
+    color: var(--white);
+    font-family: "Poppins", sans-serif;
     font-weight: 700;
-    margin: 20px 0;
-    position: relative;
-	text-align: center;
-}
-.section-title a{
-    font-size: 2rem;
-    color: var(--lightgray);
-    font-family: inherit;
-    font-weight: 400;
-    text-transform: initial;
-}
-.section-title a span {
-    font-family: inherit;
-    font-size: 1.8rem;
-    color: var(--main-color);
-}
-.add-actions,
-.edit-actions,
-.delete-actions{
-    text-align: center;
+    margin: 5px 0;
 }
 
-form{
-    background-color: var(--blue);
-    width: 90rem;
-    min-height: 10rem;
-    box-shadow: var(--shadow);
-    padding: 1rem;
-    border-radius: 20px;
-    border: 1px solid #fffc5b28;
-    margin-left: 15%;
-}
-.form-to-edit form input,
-.form-to-edit form select,
-.form-to-edit form textarea{
-    width: 80rem;
-}
-input{
-    min-width: 40rem;
-    padding: 1.5rem;
-    margin: 10px 0;
-    border: 1px solid #fffc5b28;
-    border-radius: 20px;
-    background: transparent;
-    color: var(--main-color);
-}
-input:focus{
-    border: 1px solid var(--focus);
-}
-input::placeholder{
+.section-title p,
+.register-intro p {
     color: #ccc;
+    font-size: 1.3rem;
+    font-weight: 400;
 }
-select{
+.register-intro a {
+    font-size: 1.4rem;
     color: var(--main-color);
-    min-width: 25rem;
-    padding: 1rem;
-    margin: 10px 0;
-    border: 1px solid var(--main-color);
+    transition: all 0.3s ease;
+}
+.register-intro a:hover {
+    text-decoration: underline;
+}
+.container .auth-form {
+    background: rgba(255, 255, 255, 0.158);
+    backdrop-filter: blur(10px);
+    width: 50%;
+    margin: 10px auto;
+    padding: 50px;
     border-radius: 10px;
-    background: var(--background);
 }
-select:focus{
-    border: 1px solid var(--focus);
+.container .auth-form .form-control {
+    height: 55px;
+    width: 100%;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    padding: 0 15px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.027);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(204, 204, 204, 0.2039215686);
+    font-size: 1.5rem;
+    font-family: inherit;
+    text-transform: initial;
+    color: white;
+    font-weight: 400;
 }
-textarea{
-    color: var(--main-color);
-    padding: 1rem;
-    margin: 10px 0;
-    border: 1px solid #fffc5b28;
-    border-radius: 20px;
-    background: transparent;
-    resize: none;   
+.container .auth-form .form-control::placeholder {
+    color: var(--white-light);
 }
-.textarea {
-    width: 90%;
-    height: 10rem;
+.container .auth-form .form-control:focus {
+    border-color: rgba(247, 181, 101, 0.473);
+}
+.bottom {
     padding: 1.5rem;
+    transition: all 0.3s ease;
 }
-textarea:focus{
-    border: 1px solid var(--focus);
+.bottom .bottom-item {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--white);
+    padding: 5px 0;
+    margin: 0 20px;
 }
-button, 
-.btn{
-    padding: 10px 7%;
+.bottom .bottom-item:last-child {
+    border: none;
+}
+.bottom a {
+    color: var(--main-color);
+}
+.bottom a:hover {
+    text-decoration: underline;
+}
+.submit {
+    text-align: center;
+}
+.submit button {
+    padding: 10px 15%;
     margin: 10px 0;
     border-radius: 10px;
     font-size: 15px;
     border: 1px solid #f7b56563;
     color: #fff;
-    background: #be8640;
+    background: rgba(255, 255, 255, 0.027);
+    backdrop-filter: blur(10px);
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: capitalize;
 }
-
-button:hover{
-    border: 1px solid #ffffff67;
-    /* color: var(--white); */
-    background: transparent;
-}
-
-/*-- ---------------
-Forms (Delete, Edit) 
-------------------*/
-.tab-content{
-    text-align: center;
-}
-.tab-content .title span{
-    font-size: 18px;
-    color: var(--main-color);
-    font-family: inherit;
-    font-weight: 300;
-}
-.section-title span{
-    font-size: 25px;
-    font-style: italic;
-    font-weight: 300;
+.submit button:hover {
+    border-color: rgba(255, 233, 207, 0.185);
 }
 
 /* -----
@@ -272,42 +264,21 @@ Forms (Delete, Edit)
     background-color: rgba(255, 0, 0, 0.8);
 }
 
-/* ----------
-Edit Section
-------------*/
-#counsels,
-#phrases,
-#doutrines{
-    display: none;
-}
-#counsels.active,
-#phrases.active,
-#doutrines.active{
-    display: block;
-}
-
 /*- - - - - - - - 
 Responsivity 
 - - - - - - - - - */
 @media (max-width: 600px){
+    .container .auth-form {
+        width: 95%;
+        margin: 1em auto;
+    }
     .section-title h1 {
         font-size: 2rem;
     }
     .section-title p {
         font-weight: 300;
     }
-    form {
-        margin-left: 0;
-    }
-    .user {
-        padding: 10% 0;
-        display: flex;
-        flex-wrap: wrap;
-        margin: auto;
-        width: 100%;
-    }
-    input {
-        min-width: 100%;
-        width: 100%;
+    .bottom .bottom-item {
+        border-bottom: 1px solid #cccccc1e;
     }
 }

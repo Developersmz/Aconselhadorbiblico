@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 	// Clean URL after creatind an account and redirect to signin
 	const urlParams = new URLSearchParams(window.location.search)
-	if (urlParams.get('welcome') === 'true') {
+	if (urlParams.get('logged') === 'true') {
 		const cleanUrl = window.location.href.split('?')[0]
 		window.history.replaceState({}, document.title, cleanUrl)
 		

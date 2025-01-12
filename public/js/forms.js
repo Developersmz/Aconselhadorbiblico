@@ -1,5 +1,3 @@
-
-
 // Function to Dynamic Content Forms
 
 function createDynamicComponent(operation, formAction, formFields) {
