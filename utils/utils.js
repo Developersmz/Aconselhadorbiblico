@@ -9,13 +9,13 @@ const selectMultiplePhrasesAndDoutrines = async () => {
         // Seleciona 5 frases aleatórias
         const phrases = await Phrase.findAll({
             order: Sequelize.literal('RAND()'),
-            limit: 5,
+            limit: 10,
         });
 
         // Seleciona 5 doutrinas aleatórias
         const doutrines = await Doutrine.findAll({
-            order: [['createdAt', 'ASC']],
-            limit: 5,
+            order: Sequelize.literal('RAND()'),
+            limit: 10,
         });
 
         // Atualiza o cache para frases
