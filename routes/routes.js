@@ -114,9 +114,7 @@ router.use(express.json())
 
 // Rota inicial
 router.get('/', async (req, res) => {
-    const db_phrases = await Phrase.findAll()
-    const db_doutrines = await Doutrine.findAll()
-
+    
     let currentYear = new Date().getFullYear()
     const userId = req.session.userId
     let user = ""
