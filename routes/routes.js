@@ -146,6 +146,7 @@ router.get('/', async (req, res) => {
               db_doutrines: doutrines.length ? doutrines : [], 
               user: user ? user.dataValues : null,
               title: "Aconselhador Bíblico | Conselho Diário",
+              currentYear,
         })
     } catch (error) {
         console.error('Erro ao carregar conteúdo:', error);
