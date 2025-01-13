@@ -33,7 +33,7 @@ app.use(session({
 }))
 
 // schedule content update (00:00)
-schedule.scheduleJob('0 0 * * *', async () => {
+schedule.scheduleJob('*/5 * * * *', async () => {
     try {
         await selectMultiplePhrasesAndDoutrines();
     } catch (error) {
