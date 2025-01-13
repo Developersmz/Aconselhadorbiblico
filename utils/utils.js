@@ -6,13 +6,13 @@ const selectMultiplePhrasesAndDoutrines = async () => {
     console.log('Função selectMultiplePhrasesAndDoutrines foi chamada');
 
     try {
-        // Seleciona 5 frases aleatórias
+        // Seleciona 10 frases aleatórias
         const phrases = await Phrase.findAll({
             order: Sequelize.literal('RAND()'),
             limit: 10,
         });
 
-        // Seleciona 5 doutrinas aleatórias
+        // Seleciona 10 doutrinas aleatórias
         const doutrines = await Doutrine.findAll({
             order: Sequelize.literal('RAND()'),
             limit: 10,
